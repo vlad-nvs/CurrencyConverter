@@ -33,12 +33,11 @@ namespace CurrencyConverter
     {
         #region Global
        
-        //string off_line_xml = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml";
+        string off_line_xml = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml";
         Regex regex = new Regex(@"^[0-9-,.]*$");
        
-        //string off_line_xml =  @"D:\Visual Studio 2010\Projects\CurrencyConverter\CurrencyConverter\eurofxref-hist-90d.xml";
-        string q = System.Convert.ToString('"');
-        string off_line_xml = AppDomain.CurrentDomain.BaseDirectory + @"\eurofxref-hist-90d.xml";
+        
+        //string off_line_xml = AppDomain.CurrentDomain.BaseDirectory + @"\eurofxref-hist-90d.xml";
         static string sPattern = @"^\d{4}-((0\d)|(1[012]))-(([012]\d)|3[01])$";
         #endregion
 
@@ -63,12 +62,12 @@ namespace CurrencyConverter
         #region GetData Method
         public MyValues GetData(string currency, string startdate, string enddate)
         {
-            //if (CheckForInternetConnection() == false)
-            //{
-            //    MyValues CurrencyInfo = new MyValues();
-            //    CurrencyInfo.Errors.Add("error_connection");
-            //    return CurrencyInfo;
-            //}
+            if (CheckForInternetConnection() == false)
+            {
+                MyValues CurrencyInfo = new MyValues();
+                CurrencyInfo.Errors.Add("error_connection");
+                return CurrencyInfo;
+            }
             try
             {
                 int startexist = 0, endexist = 0, curexist = 0;
